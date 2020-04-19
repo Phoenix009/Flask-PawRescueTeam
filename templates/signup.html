@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    SignUp - Paws Rescue Center
+{% endblock %}
+
+{% block heading %}
+Sign Up !
+{% endblock heading %}
+
+
+{% block content %}
+
+    {% if msg %}
+        <h4>{{ msg }}</h4>
+    {% endif %}
+    <form action="{{ url_for('signup') }}" method="post">
+
+        <label for="fName">{{form.fName.label}}:</label><br>
+        {{form.fName}}
+        <br>
+
+        {% if form.email.errors %}
+            <ul>
+                {% for error in form.email.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label for="email">{{form.email.label}}:</label><br>
+        {{form.email}}
+        <br>
+
+        {% if form.password.errors %}
+            <ul>
+                {% for error in form.password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <label for="password">{{form.password.label}}:</label><br>
+        {{form.password}}
+        <br>
+
+
+        <label for="cpassword">{{form.cpassword.label}}:</label><br>
+        {{form.cpassword}}
+        <br>
+
+        {{ form.csrf_token }}
+        {{form.submit}}
+    </form>
+
+{% endblock content %}

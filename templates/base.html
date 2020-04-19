@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <div>
+        <ul style="list-style-type: none;float: right;font-size: large;">
+            <li style="display:inline"><a href="{{url_for('home')}}">Home</a></li>
+            <li style="display:inline"><a href="{{url_for('about')}}">About</a></li>
+            {% if session['login'] %}
+                <li style="display:inline"><a href="{{url_for('logout')}}">Log Out</a></li>
+            {% else %}
+                <li style="display:inline"><a href="{{url_for('signup')}}">Sign Up</a></li>
+                <li style="display:inline"><a href="{{url_for('login')}}">Log In</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <h1 id="title">{% block heading %}{% endblock heading %}</h1>
+    <div id="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>
